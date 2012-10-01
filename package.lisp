@@ -1,5 +1,6 @@
 ;;;; package.lisp
 
 (defpackage #:dbpedia-sparql
-  (:use #:cl))
+  (:use #:cl
+        #:alexandria))
 

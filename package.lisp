@@ -2,5 +2,6 @@
 
 (defpackage #:dbpedia-sparql
   (:use #:cl
-        #:alexandria))
+        #:alexandria)
+  (:export #:query->list))
 

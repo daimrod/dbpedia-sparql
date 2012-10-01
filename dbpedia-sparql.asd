@@ -2,9 +2,7 @@
 
 (asdf:defsystem #:dbpedia-sparql
   :serial t
-  :description "Describe dbpedia-sparql here"
-  :author "Your Name <your.name@example.com>"
-  :license "Specify license here"
+  :description "dbpedia-sparql"
   :depends-on (#:drakma
                #:cl-json
                #:alexandria)

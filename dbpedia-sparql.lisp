@@ -29,9 +29,10 @@
     (loop :for line :in (assoc-value (assoc-value results :RESULTS)
                                      :BINDINGS)
           :do
-             (push (loop :for title :in titles
-                         :collect (assoc-value (assoc-value line title)
-                                               :VALUE))
+             (push (nreverse
+                    (loop :for title :in titles
+                          :collect (assoc-value (assoc-value line title)
+                                                :VALUE)))
                    ret))
     (nreverse ret)))
 

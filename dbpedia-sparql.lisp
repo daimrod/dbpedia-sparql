@@ -22,10 +22,12 @@
 
 (defun make-better-list (results)
   (let (titles ret)
-    (loop :for title :in (assoc-value (assoc-value results :HEAD)
-                                      :VARS)
-          :do (push title ret)
-          :do (push (intern (upper-case title) :keyword) titles))
+    (push (nreverse
+           (loop :for title :in (assoc-value (assoc-value results :HEAD)
+                                             :VARS)
+                 :collect title
+                 :do (push (intern (upper-case title) :keyword) titles)))
+          ret)
     (loop :for line :in (assoc-value (assoc-value results :RESULTS)
                                      :BINDINGS)
           :do

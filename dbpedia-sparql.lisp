@@ -37,10 +37,14 @@
     (nreverse ret)))
 
 (defun query->list (query)
-  (make-better-list
-   (json->list
-    (bytes->string
-     (send-query query)))))
+  (let ((original-ret (send-query query)))
+    (typecase original-ret
+      ((simple-array (unsigned-byte 8))
+       (make-better-list
+        (json->list
+         (bytes->string original-ret))))
+      ((simple-array character)
+       original-ret))))
 
 (defun upper-case (string)
   (map 'string #'char-upcase string))

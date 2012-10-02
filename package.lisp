@@ -3,5 +3,6 @@
 (defpackage #:dbpedia-sparql
   (:use #:cl
         #:alexandria)
-  (:export #:query->list))
+  (:export #:query->list)
+  (:nicknames :db-sql))
 

@@ -4,5 +4,5 @@
   (:use #:cl
         #:alexandria)
   (:export #:query->list)
-  (:nicknames :db-sql))
+  (:nicknames :db-sparql))
 

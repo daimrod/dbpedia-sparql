@@ -4,12 +4,18 @@
 
 ;;; "dbpedia-sparql" goes here. Hacks and glory await!
 
+(defparameter *http-proxy-server* nil)
+(defparameter *http-proxy-port* 80)
+
 (defun send-query (query)
   (drakma:http-request "http://dbpedia.org/sparql"
-                     :method :get
-                     :parameters
-                     (list (cons "query" query)
-                           (cons "format" "json"))))
+                       :method :get
+                       :parameters
+                       (list (cons "query" query)
+                             (cons "format" "json"))
+                       :proxy (unless (null *http-proxy-server*)
+                                (list *http-proxy-server*
+                                      *http-proxy-port*))))
 
 (defun json->list (json)
   (json:decode-json-from-string json))

@@ -1,8 +1,7 @@
-;;;; dbpedia-sparql.lisp
+; Copyright (C) 2012 by Grégoire Jadi
+; See the file LICENSE for copying permission.
 
 (in-package #:dbpedia-sparql)
-
-;;; "dbpedia-sparql" goes here. Hacks and glory await!
 
 (defparameter *http-proxy-server* nil)  ; hostname only! no http://
 (defparameter *http-proxy-port* 80)

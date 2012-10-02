@@ -5,7 +5,8 @@
   :description "dbpedia-sparql"
   :depends-on (#:drakma
                #:cl-json
-               #:alexandria)
+               #:alexandria
+               #:babel)
   :components ((:file "package")
                (:file "dbpedia-sparql")))
 

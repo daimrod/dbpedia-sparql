@@ -11,9 +11,6 @@
                      (list (cons "query" query)
                            (cons "format" "json"))))
 
-(defun bytes->string (bytes)
-  (map 'string #'code-char bytes))
-
 (defun json->list (json)
   (json:decode-json-from-string json))
 
@@ -41,7 +38,7 @@
       ((simple-array (unsigned-byte 8))
        (make-better-list
         (json->list
-         (bytes->string original-ret))))
+         (babel:octets-to-string original-ret))))
       ((simple-array character)
        original-ret))))
 

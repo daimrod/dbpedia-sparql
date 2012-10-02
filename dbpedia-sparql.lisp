@@ -12,10 +12,7 @@
                            (cons "format" "json"))))
 
 (defun bytes->string (bytes)
-  (loop :for code :across bytes
-        :collect (code-char code) :into chars
-        :finally (return
-                   (concatenate 'string chars))))
+  (map 'string #'code-char bytes))
 
 (defun json->list (json)
   (json:decode-json-from-string json))

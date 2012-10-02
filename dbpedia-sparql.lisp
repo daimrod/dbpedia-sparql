@@ -33,14 +33,13 @@
     (nreverse ret)))
 
 (defun query->list (query)
-  (let ((original-ret (send-query query)))
-    (typecase original-ret
-      ((simple-array (unsigned-byte 8))
-       (make-better-list
-        (json->list
-         (babel:octets-to-string original-ret))))
-      ((simple-array character)
-       original-ret))))
+  (multiple-value-bind (ret code)
+      (send-query query)
+    (case code
+      (200 (make-better-list
+            (json->list
+             (babel:octets-to-string ret))))
+      (t ret))))
 
 (defun upper-case (string)
   (map 'string #'char-upcase string))

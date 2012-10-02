@@ -4,7 +4,7 @@
 
 ;;; "dbpedia-sparql" goes here. Hacks and glory await!
 
-(defparameter *http-proxy-server* nil)
+(defparameter *http-proxy-server* nil)  ; hostname only! no http://
 (defparameter *http-proxy-port* 80)
 
 (defun send-query (query)

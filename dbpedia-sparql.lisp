@@ -20,22 +20,21 @@
   (json:decode-json-from-string json))
 
 (defun make-better-list (results)
-  (let (titles ret)
-    (push (nreverse
+  (let (titles)
+    (cons
+     (setf titles
            (loop :for title :in (assoc-value (assoc-value results :HEAD)
                                              :VARS)
-                 :collect title
-                 :do (push (intern (upper-case title) :keyword) titles)))
-          ret)
-    (loop :for line :in (assoc-value (assoc-value results :RESULTS)
-                                     :BINDINGS)
-          :do
-             (push (nreverse
-                    (loop :for title :in titles
-                          :collect (assoc-value (assoc-value line title)
-                                                :VALUE)))
-                   ret))
-    (nreverse ret)))
+                 :collect title))
+     (loop :for line :in (assoc-value (assoc-value results :RESULTS)
+                                      :BINDINGS)
+           :collect
+           (loop :for title :in titles
+                 :collect (assoc-value (assoc-value line
+                                                    (intern
+                                                     (upper-case title)
+                                                     :keyword))
+                                       :VALUE))))))
 
 (defun query->list (query)
   (multiple-value-bind (ret code)
